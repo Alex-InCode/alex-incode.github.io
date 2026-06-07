@@ -3,178 +3,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mudshark | Python Developer</title>
+<title>Premium Blog</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
     background:#0f172a;
     color:white;
-    line-height:1.6;
 }
 
 header{
+    position:sticky;
+    top:0;
+    background:rgba(15,23,42,0.9);
+    backdrop-filter:blur(10px);
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+.hero{
+    min-height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
-    padding:80px 20px;
-    background:linear-gradient(135deg,#1e293b,#0f172a);
+    padding:20px;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
 }
 
-header h1{
-    font-size:3rem;
+.hero-content h1{
+    font-size:60px;
+    margin-bottom:20px;
 }
 
-header p{
-    color:#94a3b8;
-    margin-top:10px;
+.hero-content p{
+    color:#cbd5e1;
+    max-width:700px;
+    margin:auto;
+    margin-bottom:30px;
 }
 
 .btn{
     display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#3b82f6;
+    padding:15px 35px;
+    background:#38bdf8;
     color:white;
+    border-radius:50px;
     text-decoration:none;
-    border-radius:8px;
+    transition:.3s;
 }
 
-section{
-    max-width:1000px;
-    margin:auto;
-    padding:60px 20px;
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 20px #38bdf8;
 }
 
-.section-title{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:2rem;
+.search-section{
+    padding:40px 8%;
 }
 
-.cards{
+.search-box{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+    font-size:16px;
+}
+
+.featured{
+    padding:40px 8%;
+}
+
+.feature-card{
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.feature-card h2{
+    margin-bottom:15px;
+    color:#38bdf8;
+}
+
+.blogs{
+    padding:40px 8%;
+}
+
+.blog-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
 
 .card{
     background:#1e293b;
-    padding:20px;
-    border-radius:15px;
-    transition:0.3s;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.4s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-10px);
 }
 
-.card h3{
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
     margin-bottom:10px;
 }
 
-.skills{
-    text-align:center;
+.card-content p{
+    color:#cbd5e1;
+    margin-bottom:15px;
 }
 
-.skill{
-    display:inline-block;
-    background:#334155;
-    margin:5px;
-    padding:10px 15px;
-    border-radius:20px;
+.read-btn{
+    text-decoration:none;
+    color:#38bdf8;
 }
 
 footer{
     text-align:center;
     padding:30px;
     background:#020617;
+    margin-top:50px;
     color:#94a3b8;
 }
-</style>
 
+.fade{
+    animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:768px){
+.hero-content h1{
+    font-size:40px;
+}
+
+nav{
+    display:none;
+}
+}
+</style>
 </head>
 <body>
 
 <header>
-    <h1>🦈 Mudshark</h1>
-    <p>Python Developer • GUI Builder • Future Tech Entrepreneur</p>
-    <a href="#projects" class="btn">View My Projects</a>
+    <div class="logo">PremiumBlog</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Articles</a>
+        <a href="#">Technology</a>
+        <a href="#">Contact</a>
+    </nav>
 </header>
 
-<section>
-    <h2 class="section-title">About Me</h2>
-    <p>
-        Welcome to Mudshark! I am a passionate Python developer
-        learning GUI development, automation, and software creation.
-        This blog documents my coding journey and showcases my projects.
-    </p>
-</section>
-
-<section class="skills">
-    <h2 class="section-title">Skills</h2>
-
-    <span class="skill">Python</span>
-    <span class="skill">Tkinter</span>
-    <span class="skill">CustomTkinter</span>
-    <span class="skill">Automation</span>
-    <span class="skill">GitHub</span>
-    <span class="skill">HTML</span>
-</section>
-
-<section id="projects">
-    <h2 class="section-title">Projects</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>GUI Calculator</h3>
-            <p>A calculator built using Python Tkinter.</p>
-        </div>
-
-        <div class="card">
-            <h3>Student File Manager</h3>
-            <p>Desktop application for organizing student files.</p>
-        </div>
-
-        <div class="card">
-            <h3>Automation Tools</h3>
-            <p>Python scripts that automate repetitive tasks.</p>
-        </div>
-
+<section class="hero">
+    <div class="hero-content fade">
+        <h1>Premium Modern Blog</h1>
+        <p>
+            Discover technology, programming, AI, and productivity tips
+            in a beautifully designed premium blog experience.
+        </p>
+        <a href="#posts" class="btn">Explore Articles</a>
     </div>
 </section>
 
-<section>
-    <h2 class="section-title">Latest Blog Posts</h2>
+<section class="search-section">
+    <input
+        type="text"
+        class="search-box"
+        placeholder="Search articles..."
+        id="searchInput"
+        onkeyup="searchPosts()">
+</section>
 
-    <div class="cards">
+<section class="featured">
+    <div class="feature-card fade">
+        <h2>Featured Article</h2>
+        <p>
+            Learn how modern developers build beautiful applications
+            using HTML, CSS, JavaScript, Python, and Artificial Intelligence.
+        </p>
+    </div>
+</section>
 
-        <div class="card">
-            <h3>My First Python Program</h3>
-            <p>How I started learning Python.</p>
+<section class="blogs" id="posts">
+    <div class="blog-grid" id="blogGrid">
+
+        <div class="card fade">
+            <img src="https://picsum.photos/500/300?1">
+            <div class="card-content">
+                <h3>Mastering HTML</h3>
+                <p>Build beautiful websites from scratch.</p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Learning Tkinter</h3>
-            <p>Creating desktop applications with Python.</p>
+        <div class="card fade">
+            <img src="https://picsum.photos/500/300?2">
+            <div class="card-content">
+                <h3>CSS Tricks</h3>
+                <p>Modern layouts, animations and effects.</p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>My Coding Journey</h3>
-            <p>Progress updates and lessons learned.</p>
+        <div class="card fade">
+            <img src="https://picsum.photos/500/300?3">
+            <div class="card-content">
+                <h3>JavaScript Power</h3>
+                <p>Create interactive web applications.</p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
+        </div>
+
+        <div class="card fade">
+            <img src="https://picsum.photos/500/300?4">
+            <div class="card-content">
+                <h3>Python Automation</h3>
+                <p>Save time by automating daily tasks.</p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
+        </div>
+
+        <div class="card fade">
+            <img src="https://picsum.photos/500/300?5">
+            <div class="card-content">
+                <h3>AI for Beginners</h3>
+                <p>Understand the future of technology.</p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
+        </div>
+
+        <div class="card fade">
+            <img src="https://picsum.photos/500/300?6">
+            <div class="card-content">
+                <h3>Productivity Hacks</h3>
+                <p>Work smarter and achieve more daily.</p>
+                <a href="#" class="read-btn">Read More →</a>
+            </div>
         </div>
 
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Mudshark | Built with GitHub Pages</p>
+    © 2026 PremiumBlog | Designed with HTML, CSS & JavaScript
 </footer>
 
+<script>
+function searchPosts(){
+    let input=document.getElementById("searchInput").value.toLowerCase();
+    let cards=document.querySelectorAll(".card");
+
+    cards.forEach(card=>{
+        let title=card.querySelector("h3").textContent.toLowerCase();
+
+        if(title.includes(input)){
+            card.style.display="block";
+        }else{
+            card.style.display="none";
+        }
+    });
+}
+</script>
+
 </body>
-      </html>
+            </html>
