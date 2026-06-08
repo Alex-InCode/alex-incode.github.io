@@ -4,7 +4,127 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mudshark | Python Developer</title>
+<!-- LOGIN BUTTON -->
+<div class="profile-btn" onclick="openLogin()">
+    <span id="profileText">Login</span>
+</div>
 
+<!-- LOGIN POPUP -->
+<div class="login-popup" id="loginPopup">
+    <div class="login-box">
+        <h2>Login</h2>
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="email" id="email" placeholder="Email">
+
+        <button onclick="login()">Sign In</button>
+
+        <button class="close-btn" onclick="closeLogin()">
+            Close
+        </button>
+    </div>
+</div>
+
+<style>
+.profile-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#007bff;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    z-index:1000;
+}
+
+.login-popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    width:300px;
+    text-align:center;
+}
+
+.login-box input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+.login-box button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+
+.close-btn{
+    background:red;
+    color:white;
+}
+</style>
+
+<script>
+function openLogin(){
+    document.getElementById("loginPopup").style.display="flex";
+}
+
+function closeLogin(){
+    document.getElementById("loginPopup").style.display="none";
+}
+
+function login(){
+
+    let username =
+        document.getElementById("username").value;
+
+    let email =
+        document.getElementById("email").value;
+
+    if(username === "" || email === ""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+
+    document.getElementById("profileText").innerText =
+        username;
+
+    closeLogin();
+}
+
+window.onload = function(){
+
+    let savedUser =
+        localStorage.getItem("username");
+
+    if(savedUser){
+        document.getElementById("profileText").innerText =
+            savedUser;
+    }
+}
+    </script>
 <style>
 *{
     margin:0;
