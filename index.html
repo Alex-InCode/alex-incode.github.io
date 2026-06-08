@@ -923,7 +923,7 @@ body.light .hero-card{
 function closeLogin(){
     document.getElementById("loginPopup").style.display = "none";
 }
-
+    
 function login(){
 
     const username =
@@ -936,7 +936,6 @@ function login(){
         alert("Please fill all fields");
         return;
     }
-
     localStorage.setItem("username", username);
     localStorage.setItem("email", email);
 
@@ -956,27 +955,8 @@ function login(){
 }
 
 function profileAction(){
-
-    let savedUser =
-        localStorage.getItem("username");
-
-    if(savedUser){
-
-        let menu =
-            document.getElementById("profileMenu");
-
-        if(menu.style.display === "block"){
-            menu.style.display = "none";
-        }else{
-            menu.style.display = "block";
-        }
-
-    }else{
-
-        openLogin();
-
+    openLogin();
     }
-}
 
 function logout(){
 
