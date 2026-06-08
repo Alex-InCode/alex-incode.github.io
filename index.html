@@ -918,33 +918,8 @@ body.light .hero-card{
     </div>
   </div>
 </footer>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBNj8nhNIeEORY6qa6s5iPupPqZdNOA4aQ",
-    authDomain: "mudshark-blog.firebaseapp.com",
-    projectId: "mudshark-blog",
-    storageBucket: "mudshark-blog.firebasestorage.app",
-    messagingSenderId: "143488495231",
-    appId: "1:143488495231:web:eb750e4e117a48514a994a",
-    measurementId: "G-NXHLWP3TC8"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-function openLogin(){
-    document.getElementById("loginPopup").style.display = "flex";
-}
-
+  <script>
+    
 function closeLogin(){
     document.getElementById("loginPopup").style.display = "none";
 }
@@ -1123,5 +1098,32 @@ document.addEventListener("click", function(event){
 });
 
   </script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBNj8nhNIeEORY6qa6s5iPupPqZdNOA4aQ",
+    authDomain: "mudshark-blog.firebaseapp.com",
+    projectId: "mudshark-blog",
+    storageBucket: "mudshark-blog.firebasestorage.app",
+    messagingSenderId: "143488495231",
+    appId: "1:143488495231:web:eb750e4e117a48514a994a",
+    measurementId: "G-NXHLWP3TC8"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+function openLogin(){
+    document.getElementById("loginPopup").style.display = "flex";
+}
+    </script>
 </body>
     </html>
