@@ -642,12 +642,10 @@ body.light .hero-card{
     <div class="nav-actions">
       <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">🌙</button>
     </div>
-  </div>
-</nav>
 
-<div class="profile-btn" onclick="profileAction()" title="Profile">
-  <span id="profileText">Login</span>
-</div>
+    <div class="profile-btn" onclick="profileAction()" title="Profile">
+    <span id="profileText">Login</span>
+    </div>
 
   <!-- PROFILE MENU -->
 
@@ -911,48 +909,48 @@ body.light .hero-card{
     </div>
   </div>
 </footer>
+  <script>
 
-<script>
 function openLogin(){
-  document.getElementById("loginPopup").style.display = "flex";
+    document.getElementById("loginPopup").style.display = "flex";
 }
 
 function closeLogin(){
-  document.getElementById("loginPopup").style.display = "none";
+    document.getElementById("loginPopup").style.display = "none";
 }
 
 function login(){
 
-  const username =
-      document.getElementById("username").value.trim();
+    const username =
+        document.getElementById("username").value.trim();
 
-  const email =
-      document.getElementById("email").value.trim();
+    const email =
+        document.getElementById("email").value.trim();
 
-  if(username === "" || email === ""){
-      alert("Please fill all fields");
-      return;
-  }
+    if(username === "" || email === ""){
+        alert("Please fill all fields");
+        return;
+    }
 
-  localStorage.setItem("username", username);
-  localStorage.setItem("email", email);
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
 
-  document.getElementById("profileText").innerText =
-      username.substring(0,2).toUpperCase();
+    document.getElementById("profileText").innerText =
+        username.substring(0,2).toUpperCase();
 
-  document.getElementById("menuUsername").innerText =
-      username;
+    document.getElementById("menuUsername").innerText =
+        username;
 
-  document.getElementById("menuEmail").innerText =
-      email;
+    document.getElementById("menuEmail").innerText =
+        email;
 
-  document.getElementById("profileMenu").style.display =
-      "none";
+    document.getElementById("profileMenu").style.display =
+        "none";
 
-  closeLogin();
-  }
+    closeLogin();
+}
 
-  function profileAction(){
+function profileAction(){
 
     let savedUser =
         localStorage.getItem("username");
@@ -973,71 +971,117 @@ function login(){
         openLogin();
 
     }
-           }
+}
 
 function logout(){
 
-  localStorage.removeItem("username");
-  localStorage.removeItem("email");
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
 
-  document.getElementById("profileText").innerText =
-      "Login";
+    document.getElementById("profileText").innerText =
+        "Login";
 
-  document.getElementById("profileMenu").style.display =
-      "none";
+    document.getElementById("menuUsername").innerText =
+        "Guest";
 
-  alert("Logged out successfully");
+    document.getElementById("menuEmail").innerText =
+        "Not logged in";
+
+    document.getElementById("profileMenu").style.display =
+        "none";
+
+    alert("Logged out successfully");
 }
 
 function myProfile(){
 
-  alert("Profile page coming soon.");
+    alert("Profile page coming soon.");
 
 }
 
 function settings(){
 
-  alert("Settings page coming soon.");
+    alert("Settings page coming soon.");
 
-        }
-  
+}
+
 function toggleTheme(){
-  document.body.classList.toggle("light");
-  const isLight = document.body.classList.contains("light");
-  localStorage.setItem("theme", isLight ? "light" : "dark");
-  document.getElementById("themeBtn").innerText = isLight ? "☀️" : "🌙";
+
+    document.body.classList.toggle("light");
+
+    const isLight =
+        document.body.classList.contains("light");
+
+    localStorage.setItem(
+        "theme",
+        isLight ? "light" : "dark"
+    );
+
+    document.getElementById("themeBtn").innerText =
+        isLight ? "☀️" : "🌙";
 }
 
 function filterContent(){
-  const q = document.getElementById("searchInput").value.toLowerCase().trim();
-  const cards = document.querySelectorAll(".searchable");
 
-  cards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    card.style.display = text.includes(q) ? "" : "none";
-  });
+    const q =
+        document.getElementById("searchInput")
+        .value.toLowerCase().trim();
+
+    const cards =
+        document.querySelectorAll(".searchable");
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        card.style.display =
+            text.includes(q) ? "" : "none";
+
+    });
 }
 
 window.addEventListener("load", function(){
-  const savedUser = localStorage.getItem("username");
-  if(savedUser){
-    document.getElementById("profileText").innerText = savedUser;
-  }
 
-  const savedTheme = localStorage.getItem("theme");
-  if(savedTheme === "light"){
-    document.body.classList.add("light");
-    document.getElementById("themeBtn").innerText = "☀️";
-  }
+    const savedUser =
+        localStorage.getItem("username");
+
+    const savedEmail =
+        localStorage.getItem("email");
+
+    if(savedUser){
+
+        document.getElementById("profileText").innerText =
+            savedUser.substring(0,2).toUpperCase();
+
+        document.getElementById("menuUsername").innerText =
+            savedUser;
+
+        document.getElementById("menuEmail").innerText =
+            savedEmail;
+    }
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
+    if(savedTheme === "light"){
+
+        document.body.classList.add("light");
+
+        document.getElementById("themeBtn").innerText =
+            "☀️";
+    }
 });
 
-  document.addEventListener("click", function(event){
+document.addEventListener("click", function(event){
 
-    let menu =
+    const menu =
         document.getElementById("profileMenu");
 
-    let profileBtn =
+    const profileBtn =
         document.querySelector(".profile-btn");
+
+    if(!menu || !profileBtn) return;
 
     if(
         !menu.contains(event.target) &&
@@ -1047,6 +1091,7 @@ window.addEventListener("load", function(){
     }
 
 });
-</script>
+
+  </script>
 </body>
     </html>
