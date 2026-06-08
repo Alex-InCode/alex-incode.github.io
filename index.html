@@ -959,19 +959,21 @@ function login(){
 
     if(savedUser){
 
-    document.getElementById("profileText").innerText =
-        savedUser.substring(0,2).toUpperCase();
+        let menu =
+            document.getElementById("profileMenu");
 
-    document.getElementById("menuUsername").innerText =
-        savedUser;
+        if(menu.style.display === "block"){
+            menu.style.display = "none";
+        }else{
+            menu.style.display = "block";
+        }
 
-    document.getElementById("menuEmail").
-  }
+    }else{
 
-      openLogin();
+        openLogin();
 
-  }
-}
+    }
+           }
 
 function logout(){
 
