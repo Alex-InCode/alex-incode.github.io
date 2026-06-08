@@ -954,22 +954,19 @@ function login(){
 
   function profileAction(){
 
-  let savedUser =
-      localStorage.getItem("username");
+    let savedUser =
+        localStorage.getItem("username");
 
-  if(savedUser){
+    if(savedUser){
 
-  document.getElementById("profileText").innerText =
-      savedUser.substring(0,2).toUpperCase();
+    document.getElementById("profileText").innerText =
+        savedUser.substring(0,2).toUpperCase();
 
-  document.getElementById("menuUsername").innerText =
-      savedUser;
+    document.getElementById("menuUsername").innerText =
+        savedUser;
 
-  document.getElementById("menuEmail").innerText =
-      localStorage.getItem("email");
+    document.getElementById("menuEmail").
   }
-
-  }else{
 
       openLogin();
 
