@@ -1,301 +1,900 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mudshark | Python Developer</title>
-<!-- LOGIN BUTTON -->
-<div class="profile-btn" onclick="openLogin()">
-    <span id="profileText">Login</span>
-</div>
-
-<!-- LOGIN POPUP -->
-<div class="login-popup" id="loginPopup">
-    <div class="login-box">
-        <h2>Login</h2>
-
-        <input type="text" id="username" placeholder="Username">
-
-        <input type="email" id="email" placeholder="Email">
-
-        <button onclick="login()">Sign In</button>
-
-        <button class="close-btn" onclick="closeLogin()">
-            Close
-        </button>
-    </div>
-</div>
+<meta name="description" content="Mudshark Software Industry - Python projects, tutorials, and blog posts by Alex Alay." />
 
 <style>
-.profile-btn{
-    position:fixed;
-    top:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#007bff;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    font-weight:bold;
-    box-shadow:0 4px 15px rgba(0,0,0,0.3);
-    z-index:1000;
+:root{
+  --bg:#0f172a;
+  --bg-2:#111827;
+  --card:#1e293b;
+  --card-2:#0b1220;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --line:rgba(148,163,184,.18);
+  --accent:#38bdf8;
+  --accent-2:#2563eb;
+  --shadow:0 18px 50px rgba(0,0,0,.25);
 }
 
-.login-popup{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-}
-
-.login-box{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    width:300px;
-    text-align:center;
-}
-
-.login-box input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
-
-.login-box button{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-}
-
-.close-btn{
-    background:red;
-    color:white;
-}
-</style>
-
-<script>
-function openLogin(){
-    document.getElementById("loginPopup").style.display="flex";
-}
-
-function closeLogin(){
-    document.getElementById("loginPopup").style.display="none";
-}
-
-function login(){
-
-    let username =
-        document.getElementById("username").value;
-
-    let email =
-        document.getElementById("email").value;
-
-    if(username === "" || email === ""){
-        alert("Please fill all fields");
-        return;
-    }
-
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
-
-    document.getElementById("profileText").innerText =
-        username;
-
-    closeLogin();
-}
-
-window.onload = function(){
-
-    let savedUser =
-        localStorage.getItem("username");
-
-    if(savedUser){
-        document.getElementById("profileText").innerText =
-            savedUser;
-    }
-}
-    </script>
-<style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, Arial, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    background:#0f172a;
-    color:white;
-    line-height:1.6;
+  background:
+    radial-gradient(circle at top, rgba(56,189,248,.12), transparent 35%),
+    linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+  color:var(--text);
+  line-height:1.6;
+  transition:background .3s ease, color .3s ease;
+  min-height:100vh;
 }
 
-header{
-    text-align:center;
-    padding:80px 20px;
-    background:linear-gradient(135deg,#1e293b,#0f172a);
+/* Light theme */
+body.light{
+  --bg:#f8fafc;
+  --bg-2:#ffffff;
+  --card:#ffffff;
+  --card-2:#eef2ff;
+  --text:#0f172a;
+  --muted:#475569;
+  --line:rgba(15,23,42,.12);
+  --accent:#0284c7;
+  --accent-2:#2563eb;
+  background:
+    radial-gradient(circle at top, rgba(2,132,199,.10), transparent 35%),
+    linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
-header h1{
-    font-size:3rem;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-header p{
-    color:#94a3b8;
-    margin-top:10px;
+img{
+  max-width:100%;
+  display:block;
+}
+
+.container{
+  width:min(1120px, calc(100% - 32px));
+  margin:0 auto;
+}
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter:blur(14px);
+  background:rgba(2,6,23,.78);
+  border-bottom:1px solid var(--line);
+}
+
+body.light .navbar{
+  background:rgba(248,250,252,.82);
+}
+
+.navbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  letter-spacing:.3px;
+}
+
+.brand-badge{
+  width:40px;
+  height:40px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow:var(--shadow);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+  color:var(--muted);
+}
+
+.nav-links a{
+  font-size:.95rem;
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  color:var(--text);
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon-btn{
+  border:none;
+  cursor:pointer;
+  color:var(--text);
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 12px;
+  transition:transform .2s ease, background .2s ease;
+}
+
+.icon-btn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.10);
+}
+
+.hero{
+  padding:70px 0 40px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:24px;
+  align-items:center;
+}
+
+.hero-card{
+  background:linear-gradient(180deg, rgba(30,41,59,.92), rgba(15,23,42,.92));
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:36px;
+  box-shadow:var(--shadow);
+}
+
+body.light .hero-card{
+  background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(241,245,249,.96));
+}
+
+.kicker{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(56,189,248,.08);
+  color:var(--accent);
+  font-size:.92rem;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(2.5rem, 6vw, 4.6rem);
+  line-height:1.02;
+  letter-spacing:-1.5px;
+}
+
+.hero p{
+  color:var(--muted);
+  margin-top:18px;
+  max-width:62ch;
+  font-size:1.05rem;
+}
+
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:26px;
 }
 
 .btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#3b82f6;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 18px;
+  border-radius:14px;
+  border:1px solid transparent;
+  cursor:pointer;
+  font-weight:700;
+  transition:transform .2s ease, opacity .2s ease, background .2s ease;
 }
 
-section{
-    max-width:1000px;
-    margin:auto;
-    padding:60px 20px;
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:white;
+}
+
+.btn-secondary{
+  background:transparent;
+  color:var(--text);
+  border-color:var(--line);
+}
+
+.hero-aside{
+  display:grid;
+  gap:16px;
+}
+
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat-title{
+  color:var(--muted);
+  font-size:.9rem;
+  margin-bottom:8px;
+}
+
+.stat-value{
+  font-size:1.6rem;
+  font-weight:800;
+}
+
+.search-wrap{
+  margin-top:18px;
+}
+
+.search-box{
+  width:100%;
+  padding:15px 16px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:var(--bg-2);
+  color:var(--text);
+  outline:none;
+  font-size:1rem;
+}
+
+.search-box::placeholder{
+  color:var(--muted);
+}
+
+.section{
+  padding:26px 0 0;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:16px;
+  margin-bottom:18px;
 }
 
 .section-title{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:2rem;
+  font-size:clamp(1.5rem, 3vw, 2.2rem);
+  letter-spacing:-.5px;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.section-subtitle{
+  color:var(--muted);
+  max-width:62ch;
+}
+
+.panel{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+.grid{
+  display:grid;
+  gap:18px;
+}
+
+.grid.projects{
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.grid.posts{
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .card{
-    background:#1e293b;
-    padding:20px;
-    border-radius:15px;
-    transition:0.3s;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+  transition:transform .25s ease, border-color .25s ease, background .25s ease;
 }
 
 .card:hover{
-    transform:translateY(-5px);
+  transform:translateY(-5px);
+  border-color:rgba(56,189,248,.35);
 }
 
 .card h3{
-    margin-bottom:10px;
+  margin-bottom:10px;
+  font-size:1.1rem;
+}
+
+.card p{
+  color:var(--muted);
+}
+
+.card-meta{
+  margin-top:14px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  font-size:.8rem;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(56,189,248,.08);
+  color:var(--accent);
+  border:1px solid rgba(56,189,248,.15);
 }
 
 .skills{
-    text-align:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
 }
 
 .skill{
-    display:inline-block;
-    background:#334155;
-    margin:5px;
-    padding:10px 15px;
-    border-radius:20px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:var(--card);
+  border:1px solid var(--line);
+  color:var(--text);
+  font-weight:600;
 }
 
-footer{
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.note{
+  background:linear-gradient(180deg, rgba(56,189,248,.08), rgba(255,255,255,0));
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+}
+
+.newsletter{
+  display:grid;
+  gap:12px;
+}
+
+.inline-form{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.input{
+  flex:1 1 240px;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:var(--bg-2);
+  color:var(--text);
+  outline:none;
+}
+
+.footer{
+  margin-top:40px;
+  padding:26px 0 36px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.footer-links{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.profile-btn{
+  position:fixed;
+  top:92px;
+  right:18px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-weight:800;
+  box-shadow:var(--shadow);
+  z-index:1200;
+  border:2px solid rgba(255,255,255,.22);
+}
+
+.login-popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.62);
+  justify-content:center;
+  align-items:center;
+  padding:18px;
+  z-index:2000;
+}
+
+.login-box{
+  width:min(390px, 100%);
+  background:var(--bg-2);
+  color:var(--text);
+  padding:24px;
+  border-radius:22px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+
+.login-box h2{
+  margin-bottom:12px;
+}
+
+.login-box input{
+  width:100%;
+  padding:13px 14px;
+  margin:8px 0;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--text);
+  outline:none;
+}
+
+.login-box button{
+  width:100%;
+  padding:12px 14px;
+  margin-top:10px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.sign-btn{
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:white;
+}
+
+.close-btn{
+  background:rgba(239,68,68,.12);
+  color:#ef4444;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.fade-in{
+  animation:fadeUp .6s ease both;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media (max-width: 900px){
+  .hero-grid,
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .navbar-inner{
+    flex-wrap:wrap;
+  }
+
+  .nav-links{
+    order:3;
+    width:100%;
+    justify-content:center;
+  }
+
+  .profile-btn{
+    top:150px;
+  }
+}
+
+@media (max-width: 560px){
+  .hero-card,
+  .panel{
+    padding:20px;
+    border-radius:22px;
+  }
+
+  .hero{
+    padding-top:34px;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+
+  .profile-btn{
+    width:54px;
+    height:54px;
+    right:12px;
+    top:145px;
+  }
+
+  .footer-inner{
+    justify-content:center;
     text-align:center;
-    padding:30px;
-    background:#020617;
-    color:#94a3b8;
+  }
 }
 </style>
-
 </head>
+
 <body>
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a class="brand" href="#top">
+      <span class="brand-badge">🦈</span>
+      <span>Mudshark</span>
+    </a>
 
-<header>
-    <h1>🦈 Mudshark</h1>
-    <p>Python Developer • GUI Builder • Future Tech Entrepreneur</p>
-    <a href="#projects" class="btn">View My Projects</a>
-</header>
-
-<section>
-    <h2 class="section-title">About Me</h2>
-    <p>
-        Welcome to Mudshark Software Industry! 
-        My name is Alex Alay. I am a passionate Python developer
-        learning GUI development, automation, and software creation.
-        This blog documents my coding journey and showcases my projects.
-    </p>
-</section>
-
-<section class="skills">
-    <h2 class="section-title">Skills</h2>
-
-    <span class="skill">Python</span>
-    <span class="skill">Tkinter</span>
-    <span class="skill">CustomTkinter</span>
-    <span class="skill">Automation</span>
-    <span class="skill">GitHub</span>
-    <span class="skill">HTML</span>
-</section>
-
-<section id="projects">
-    <h2 class="section-title">Projects</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>GUI Calculator</h3>
-            <p>A calculator built using Python Tkinter.</p>
-        </div>
-
-        <div class="card">
-            <h3>Student File Manager</h3>
-            <p>Desktop application for organizing student files.</p>
-        </div>
-
-        <div class="card">
-            <h3>Automation Tools</h3>
-            <p>Python scripts that automate repetitive tasks.</p>
-        </div>
-
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
     </div>
-</section>
 
-<section>
-    <h2 class="section-title">Latest Blog Posts</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>My First Python Program</h3>
-            <p>How I started learning Python.</p>
-        </div>
-
-        <div class="card">
-            <h3>Learning Tkinter</h3>
-            <p>Creating desktop applications with Python.</p>
-        </div>
-
-        <div class="card">
-            <h3>My Coding Journey</h3>
-            <p>Progress updates and lessons learned.</p>
-        </div>
-
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">🌙</button>
     </div>
-</section>
+  </div>
+</nav>
 
-<footer>
+<div class="profile-btn" onclick="openLogin()" title="Login">
+  <span id="profileText">Login</span>
+</div>
+
+<div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-box">
+    <h2 id="loginTitle">Login</h2>
+    <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
+
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+
+    <button class="sign-btn" onclick="login()">Sign In</button>
+    <button class="close-btn" onclick="closeLogin()">Close</button>
+  </div>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-card fade-in">
+        <span class="kicker">Python Developer • GUI Builder • Tech Blogger</span>
+        <h1>Mudshark</h1>
+        <p>
+          Welcome! My name is Alex the owner of Mudshark Software Industry. I build Python projects, share my coding journey,
+          and document what I learn while growing into software development.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+
+        <div class="search-wrap">
+          <input id="searchInput" class="search-box" type="text" placeholder="Search projects or posts..." oninput="filterContent()" />
+        </div>
+      </div>
+
+      <div class="hero-aside">
+        <div class="stat-card fade-in">
+          <div class="stat-title">Current Focus</div>
+          <div class="stat-value">Python + Web</div>
+          <p class="muted">Building stronger projects with clean design and better structure.</p>
+        </div>
+
+        <div class="stat-card fade-in">
+          <div class="stat-title">Website Status</div>
+          <div class="stat-value">Growing Fast</div>
+          <p class="muted">A fresh blog with room for tutorials, projects, and future login features.</p>
+        </div>
+
+        <div class="stat-card fade-in">
+          <div class="stat-title">Latest Goal</div>
+          <div class="stat-value">Firebase Ready</div>
+          <p class="muted">Upgrade the login circle from local storage to real authentication later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container panel fade-in">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">
+            I am a passionate Python developer learning GUI development, automation, and software creation.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="note">
+          <p>
+            Welcome to Mudshark Software Industry! My name is Alex Alay. This blog documents my coding journey,
+            showcases my projects, and helps me grow while learning development step by step.
+          </p>
+        </div>
+
+        <div class="note">
+          <p>
+            I am focusing on clean design, practical projects, and simple tools that make learning easier.
+            In the future, this site can grow into a real portfolio and blog platform.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container panel fade-in">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Skills</h2>
+          <p class="section-subtitle">Tools and technologies I am learning and using.</p>
+        </div>
+      </div>
+
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">Tkinter</span>
+        <span class="skill">CustomTkinter</span>
+        <span class="skill">Automation</span>
+        <span class="skill">GitHub</span>
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container panel fade-in">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">A few things I have built or am building.</p>
+        </div>
+      </div>
+
+      <div class="grid projects" id="projectsGrid">
+        <div class="card searchable">
+          <h3>GUI Calculator</h3>
+          <p>A calculator built using Python Tkinter with a clean desktop interface.</p>
+          <div class="card-meta">
+            <span class="tag">Python</span>
+            <span class="tag">Tkinter</span>
+          </div>
+        </div>
+
+        <div class="card searchable">
+          <h3>Student File Manager</h3>
+          <p>Desktop application for organizing student files and documents neatly.</p>
+          <div class="card-meta">
+            <span class="tag">Desktop App</span>
+            <span class="tag">Productivity</span>
+          </div>
+        </div>
+
+        <div class="card searchable">
+          <h3>Automation Tools</h3>
+          <p>Python scripts that automate repetitive tasks and save time.</p>
+          <div class="card-meta">
+            <span class="tag">Automation</span>
+            <span class="tag">Scripting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="section">
+    <div class="container panel fade-in">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Latest Blog Posts</h2>
+          <p class="section-subtitle">Short updates and lessons from my learning journey.</p>
+        </div>
+      </div>
+
+      <div class="grid posts" id="postsGrid">
+        <div class="card searchable">
+          <h3>My First Python Program</h3>
+          <p>How I started learning Python and writing my first simple programs.</p>
+          <div class="card-meta">
+            <span class="tag">Beginner</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="card searchable">
+          <h3>Learning Tkinter</h3>
+          <p>Creating desktop applications with Python and building simple windows.</p>
+          <div class="card-meta">
+            <span class="tag">GUI</span>
+            <span class="tag">Tkinter</span>
+          </div>
+        </div>
+
+        <div class="card searchable">
+          <h3>My Coding Journey</h3>
+          <p>Progress updates, lessons learned, and the next steps in my development path.</p>
+          <div class="card-meta">
+            <span class="tag">Journey</span>
+            <span class="tag">Growth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container panel fade-in newsletter">
+      <div class="section-head" style="margin-bottom:0;">
+        <div>
+          <h2 class="section-title">Newsletter</h2>
+          <p class="section-subtitle">Subscribe for updates when new posts and projects are added.</p>
+        </div>
+      </div>
+
+      <div class="inline-form">
+        <input class="input" type="email" placeholder="Enter your email" />
+        <button class="btn btn-primary" type="button">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container panel fade-in">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">A simple place for people to reach out.</p>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+        <div class="card">
+          <h3>Email</h3>
+          <p>a61162784@gmail.com</p>
+        </div>
+        <div class="card">
+          <h3>GitHub</h3>
+          <p>a61162784-commits.github.io</p>
+        </div>
+        <div class="card">
+          <h3>Location</h3>
+          <p>Tanzania</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
     <p>© 2026 Mudshark | Built with GitHub Pages</p>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
 </footer>
 
+<script>
+function openLogin(){
+  document.getElementById("loginPopup").style.display = "flex";
+}
+
+function closeLogin(){
+  document.getElementById("loginPopup").style.display = "none";
+}
+
+function login(){
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if(username === "" || email === ""){
+    alert("Please fill all fields");
+    return;
+  }
+
+  localStorage.setItem("username", username);
+  localStorage.setItem("email", email);
+
+  document.getElementById("profileText").innerText = username;
+  closeLogin();
+}
+
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  const isLight = document.body.classList.contains("light");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  document.getElementById("themeBtn").innerText = isLight ? "☀️" : "🌙";
+}
+
+function filterContent(){
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
+  const cards = document.querySelectorAll(".searchable");
+
+  cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.style.display = text.includes(q) ? "" : "none";
+  });
+}
+
+window.addEventListener("load", function(){
+  const savedUser = localStorage.getItem("username");
+  if(savedUser){
+    document.getElementById("profileText").innerText = savedUser;
+  }
+
+  const savedTheme = localStorage.getItem("theme");
+  if(savedTheme === "light"){
+    document.body.classList.add("light");
+    document.getElementById("themeBtn").innerText = "☀️";
+  }
+});
+</script>
 </body>
-</html>
+    </html>
