@@ -678,11 +678,11 @@ body.light .hero-card{
        id="password"
        placeholder="Password" />
 
-    <button class="sign-btn" onclick="login()">
+    <button class="sign-btn" onclick="registerUser()">
     Sign Up
 </button>
 
-<button class="sign-btn" onclick="login()">
+<button class="sign-btn" onclick="loginUser()">
     Sign In
 </button>
     <button class="close-btn" onclick="closeLogin()">Close</button>
@@ -959,8 +959,7 @@ function profileAction() {
     console.log("profileAction started");
 
     document.getElementById("loginPopup").style.display = "flex";
-
-    }
+}
 
 function logout(){
 
