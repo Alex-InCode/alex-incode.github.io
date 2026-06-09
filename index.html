@@ -624,6 +624,21 @@ body.light .hero-card{
 </head>
 
 <body>
+  <div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-box">
+    <h2 id="loginTitle">Login</h2>
+    <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
+
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password"
+       id="password"
+       placeholder="Password" />
+
+    <button class="sign-btn" onclick="login()">Sign Up</button>
+<button class="sign-btn" onclick="login()">Sign In</button>
+    <button class="close-btn" onclick="closeLogin()">Close</button>
+  </div>
 <nav class="navbar">
   <div class="container navbar-inner">
     <a class="brand" href="#top">
@@ -667,21 +682,7 @@ body.light .hero-card{
     </button>
 
 </div>
-<div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-  <div class="login-box">
-    <h2 id="loginTitle">Login</h2>
-    <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
 
-    <input type="text" id="username" placeholder="Username" />
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password"
-       id="password"
-       placeholder="Password" />
-
-    <button class="sign-btn" onclick="login()">Sign Up</button>
-<button class="sign-btn" onclick="login()">Sign In</button>
-    <button class="close-btn" onclick="closeLogin()">Close</button>
-  </div>
 </div>
   </nav>
 <main id="top">
