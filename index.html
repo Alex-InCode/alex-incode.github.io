@@ -918,6 +918,7 @@ function closeLogin(){
 }
     
 function login(){
+function login(){
 
     const username =
         document.getElementById("username").value.trim();
@@ -925,12 +926,17 @@ function login(){
     const email =
         document.getElementById("email").value.trim();
 
-    if(username === "" || email === ""){
+    const password =
+        document.getElementById("password").value;
+
+    if(username === "" || email === "" || password === ""){
         alert("Please fill all fields");
         return;
     }
+
     localStorage.setItem("username", username);
     localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
 
     document.getElementById("profileText").innerText =
         username.substring(0,2).toUpperCase();
@@ -945,6 +951,8 @@ function login(){
         "none";
 
     closeLogin();
+
+    alert("Account created successfully!");
 }
 
 
