@@ -955,27 +955,11 @@ function login(){
 }
 
 
-function profileAction(){
 
-    const user = auth.currentUser;
+function profileAction() {
 
-    if(user){
+    document.getElementById("loginPopup").style.display = "flex";
 
-        const menu =
-            document.getElementById("profileMenu");
-
-        menu.style.display =
-            menu.style.display === "block"
-            ? "none"
-            : "block";
-
-    }else{
-
-        document.getElementById(
-            "loginPopup"
-        ).style.display = "flex";
-
-    }
     }
 
 function logout(){
