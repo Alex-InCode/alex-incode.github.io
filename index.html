@@ -350,7 +350,7 @@ body.light .hero-card{
   flex-wrap:wrap;
 }
 
-.tag{
+.tag{8
   font-size:.8rem;
   padding:6px 10px;
   border-radius:999px;
@@ -654,6 +654,7 @@ body.light .hero-card{
     <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
 
     <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
     <input type="password"
        id="password"
        placeholder="Password" />
@@ -931,7 +932,7 @@ function login(){
     const password =
         document.getElementById("password").value;
 
-    if(username === "" || password === ""){
+    if(username === "" || email ==="" || password === ""){
         alert("Please fill all fields");
         return;
     }
