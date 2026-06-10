@@ -649,41 +649,7 @@ body.light .hero-card{
   <!-- PROFILE MENU -->
 
 <div class="profile-menu" id="profileMenu">
-<div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-  <div class="login-box">
-    <h2 id="loginTitle">Login</h2>
-    <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
 
-    <input type="text" id="username" placeholder="Username" />
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password"
-       id="password"
-       placeholder="Password" />
-
-    <button class="sign-btn" onclick="login()">Sign Up</button>
-<button class="sign-btn" onclick="login()">Sign In</button>
-    <button class="close-btn" onclick="closeLogin()">Close</button>
-  </div>
-    <div class="profile-header">
-        <h3 id="menuUsername">Guest</h3>
-        <p id="menuEmail">Not logged in</p>
-    </div>
-
-    <button onclick="myProfile()">
-        👤 My Profile
-    </button>
-
-    <button onclick="settings()">
-        ⚙️ Settings
-    </button>
-
-    <button onclick="logout()" class="logout-btn-menu">
-        🚪 Logout
-    </button>
-
-</div>
-
-</div>
   </nav>
 <main id="top">
   <section class="hero">
@@ -883,7 +849,41 @@ body.light .hero-card{
           <p class="section-subtitle">A simple place for people to reach out.</p>
         </div>
       </div>
+<div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-box">
+    <h2 id="loginTitle">Login</h2>
+    <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
 
+    <input type="text" id="username" placeholder="Username" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password"
+       id="password"
+       placeholder="Password" />
+
+    <button class="sign-btn" onclick="login()">Sign Up</button>
+<button class="sign-btn" onclick="login()">Sign In</button>
+    <button class="close-btn" onclick="closeLogin()">Close</button>
+  </div>
+    <div class="profile-header">
+        <h3 id="menuUsername">Guest</h3>
+        <p id="menuEmail">Not logged in</p>
+    </div>
+
+    <button onclick="myProfile()">
+        👤 My Profile
+    </button>
+
+    <button onclick="settings()">
+        ⚙️ Settings
+    </button>
+
+    <button onclick="logout()" class="logout-btn-menu">
+        🚪 Logout
+    </button>
+
+</div>
+
+  </div>
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
         <div class="card">
           <h3>Email</h3>
