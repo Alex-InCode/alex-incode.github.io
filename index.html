@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7Z8YWTHBXG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7Z8YWTHBXG');
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mudshark | Python Developer</title>
@@ -523,6 +532,100 @@ body.light .hero-card{
   }
 }
 
+
+.profile-wrap{
+  position:fixed;
+  top:92px;
+  right:18px;
+  z-index:1300;
+}
+
+.profile-btn{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--accent), var(--accent-2));
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-weight:800;
+  box-shadow:var(--shadow);
+  z-index:1200;
+  border:2px solid rgba(255,255,255,.22);
+  overflow:hidden;
+}
+
+.profile-btn:hover{
+  transform:translateY(-1px);
+}
+
+.profile-menu{
+  position:absolute;
+  top:74px;
+  right:0;
+  width:min(320px, calc(100vw - 32px));
+  background:var(--bg-2);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:none;
+}
+
+.profile-menu.show{
+  display:block;
+  animation:fadeUp .2s ease;
+}
+
+.profile-menu-header{
+  padding:22px;
+  background:linear-gradient(180deg, rgba(56,189,248,.10), rgba(255,255,255,0));
+}
+
+.profile-menu-header h3{
+  font-size:1.45rem;
+  line-height:1.15;
+}
+
+.profile-email{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:.95rem;
+  word-break:break-word;
+}
+
+.profile-menu-item{
+  width:100%;
+  border:none;
+  background:transparent;
+  color:inherit;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 22px;
+  cursor:pointer;
+  font:inherit;
+  text-align:left;
+  transition:background .2s ease;
+}
+
+.profile-menu-item:hover{
+  background:rgba(148,163,184,.10);
+}
+
+.profile-menu-item.logout{
+  color:#ef4444;
+}
+
+.profile-menu-sep{
+  height:1px;
+  background:var(--line);
+}
+
+
 @media (max-width: 900px){
   .hero-grid,
   .about-grid{
@@ -596,12 +699,41 @@ body.light .hero-card{
   </div>
 </nav>
 
-<div class="profile-btn" onclick="openLogin()" title="Login">
-  <span id="profileText">Login</span>
+
+<div class="profile-wrap" id="profileWrap">
+  <button class="profile-btn" id="profileBtn" onclick="profileAction(event)" title="Login" aria-haspopup="true" aria-expanded="false" type="button">
+    <span id="profileText">Login</span>
+  </button>
+
+  <div class="profile-menu" id="profileMenu" aria-label="Profile menu">
+    <div class="profile-menu-header">
+      <h3 id="menuName">Guest</h3>
+      <div class="profile-email" id="menuEmail">Not signed in</div>
+    </div>
+
+    <button class="profile-menu-item" type="button" onclick="goProfile()">
+      <span>👤</span>
+      <span>My Profile</span>
+    </button>
+
+    <button class="profile-menu-item" type="button" onclick="openSettings()">
+      <span>⚙️</span>
+      <span>Settings</span>
+    </button>
+
+    <div class="profile-menu-sep"></div>
+
+    <button class="profile-menu-item logout" type="button" onclick="logout()">
+      <span>🚪</span>
+      <span>Logout</span>
+    </button>
+  </div>
 </div>
 
-<div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-  <div class="login-box">
+
+
+<div class="login-popup" id="loginPopup" role="dialog" aria-modal="true" aria-labelledby="loginTitle" onclick="backdropClose(event)">
+  <div class="login-box" onclick="event.stopPropagation()">
     <h2 id="loginTitle">Login</h2>
     <p class="muted" style="margin-bottom:10px;">Enter your username and email.</p>
 
@@ -612,13 +744,14 @@ body.light .hero-card{
     <button class="close-btn" onclick="closeLogin()">Close</button>
   </div>
 </div>
+</div>
 
 <main id="top">
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-card fade-in">
         <span class="kicker">Python Developer • GUI Builder • Tech Blogger</span>
-        <h1>Alex Mudshark</h1>
+        <h1>Mudshark</h1>
         <p>
           Welcome to Mudshark Software Industry. I build Python projects, share my coding journey,
           and document what I learn while growing into software development.
@@ -662,7 +795,7 @@ body.light .hero-card{
         <div>
           <h2 class="section-title">About Me</h2>
           <p class="section-subtitle">
-            I am a passionate Python developer learning GUI development, automation, and software creation.
+            My name is Alex Alay .I am a passionate Python developer learning GUI development, automation, and software creation.
           </p>
         </div>
       </div>
@@ -815,11 +948,11 @@ body.light .hero-card{
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
         <div class="card">
           <h3>Email</h3>
-          <p>your@email.com</p>
+          <p>a61162784@gmail.com</p>
         </div>
         <div class="card">
           <h3>GitHub</h3>
-          <p>github.com/yourusername</p>
+          <p>a61162784-commits</p>
         </div>
         <div class="card">
           <h3>Location</h3>
@@ -842,12 +975,78 @@ body.light .hero-card{
 </footer>
 
 <script>
+
+function getStoredUser(){
+  return localStorage.getItem("username") || "";
+}
+
+function getStoredEmail(){
+  return localStorage.getItem("email") || "";
+}
+
+function getInitial(name){
+  const safe = (name || "").trim();
+  return safe ? safe.charAt(0).toUpperCase() : "👤";
+}
+
+function updateProfileUI(){
+  const savedUser = getStoredUser();
+  const savedEmail = getStoredEmail();
+  const profileText = document.getElementById("profileText");
+  const profileBtn = document.getElementById("profileBtn");
+  const menuName = document.getElementById("menuName");
+  const menuEmail = document.getElementById("menuEmail");
+
+  if(savedUser){
+    profileText.textContent = getInitial(savedUser);
+    profileBtn.title = "Profile menu";
+    profileBtn.setAttribute("aria-label", "Open profile menu");
+    menuName.textContent = savedUser;
+    menuEmail.textContent = savedEmail || "Signed in";
+  } else {
+    profileText.textContent = "Login";
+    profileBtn.title = "Login";
+    profileBtn.setAttribute("aria-label", "Login");
+    menuName.textContent = "Guest";
+    menuEmail.textContent = "Not signed in";
+  }
+}
+
 function openLogin(){
+  closeProfileMenu();
   document.getElementById("loginPopup").style.display = "flex";
 }
 
 function closeLogin(){
   document.getElementById("loginPopup").style.display = "none";
+}
+
+function backdropClose(event){
+  if(event.target === document.getElementById("loginPopup")){
+    closeLogin();
+  }
+}
+
+function openProfileMenu(){
+  const savedUser = getStoredUser();
+  if(!savedUser){
+    openLogin();
+    return;
+  }
+  const menu = document.getElementById("profileMenu");
+  const expanded = menu.classList.toggle("show");
+  document.getElementById("profileBtn").setAttribute("aria-expanded", expanded ? "true" : "false");
+}
+
+function closeProfileMenu(){
+  const menu = document.getElementById("profileMenu");
+  menu.classList.remove("show");
+  document.getElementById("profileBtn").setAttribute("aria-expanded", "false");
+}
+
+function profileAction(event){
+  event.stopPropagation();
+  openProfileMenu();
 }
 
 function login(){
@@ -862,8 +1061,31 @@ function login(){
   localStorage.setItem("username", username);
   localStorage.setItem("email", email);
 
-  document.getElementById("profileText").innerText = username;
+  updateProfileUI();
   closeLogin();
+  document.getElementById("profileMenu").classList.add("show");
+  document.getElementById("profileBtn").setAttribute("aria-expanded", "true");
+}
+
+function logout(){
+  localStorage.removeItem("username");
+  localStorage.removeItem("email");
+  closeProfileMenu();
+  updateProfileUI();
+  openLogin();
+}
+
+function goProfile(){
+  closeProfileMenu();
+  const target = document.getElementById("about");
+  if(target){
+    target.scrollIntoView({behavior:"smooth", block:"start"});
+  }
+}
+
+function openSettings(){
+  closeProfileMenu();
+  alert("Settings can be added here next. For now, use the theme button at the top.");
 }
 
 function toggleTheme(){
@@ -884,9 +1106,11 @@ function filterContent(){
 }
 
 window.addEventListener("load", function(){
-  const savedUser = localStorage.getItem("username");
+  updateProfileUI();
+
+  const savedUser = getStoredUser();
   if(savedUser){
-    document.getElementById("profileText").innerText = savedUser;
+    document.getElementById("profileText").innerText = getInitial(savedUser);
   }
 
   const savedTheme = localStorage.getItem("theme");
@@ -894,7 +1118,22 @@ window.addEventListener("load", function(){
     document.body.classList.add("light");
     document.getElementById("themeBtn").innerText = "☀️";
   }
+
+  document.addEventListener("click", function(event){
+    const wrap = document.getElementById("profileWrap");
+    if(wrap && !wrap.contains(event.target)){
+      closeProfileMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+      closeProfileMenu();
+      closeLogin();
+    }
+  });
 });
+
 </script>
 </body>
-</html>
+  </html>
