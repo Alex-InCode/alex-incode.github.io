@@ -336,6 +336,7 @@ body.light .hero-card{
   border-radius:22px;
   padding:22px;
   transition:transform .25s ease, border-color .25s ease, background .25s ease;
+  cursor: pointer;
 }
 
 .card:hover{
@@ -357,6 +358,12 @@ body.light .hero-card{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
+}
+
+.card-link{
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .tag{
@@ -709,35 +716,6 @@ body.light .hero-card{
 </nav>
 
 
-<div class="profile-wrap" id="profileWrap">
-  <button class="profile-btn" id="profileBtn" onclick="profileAction(event)" title="Login" aria-haspopup="true" aria-expanded="false" type="button">
-    <span id="profileText">Login</span>
-  </button>
-
-  <div class="profile-menu" id="profileMenu" aria-label="Profile menu">
-    <div class="profile-menu-header">
-      <h3 id="menuName">Guest</h3>
-      <div class="profile-email" id="menuEmail">Not signed in</div>
-    </div>
-
-    <button class="profile-menu-item" type="button" onclick="goProfile()">
-      <span>👤</span>
-      <span>My Profile</span>
-    </button>
-
-    <button class="profile-menu-item" type="button" onclick="openSettings()">
-      <span>⚙️</span>
-      <span>Settings</span>
-    </button>
-
-    <div class="profile-menu-sep"></div>
-
-    <button class="profile-menu-item logout" type="button" onclick="logout()">
-      <span>🚪</span>
-      <span>Logout</span>
-    </button>
-  </div>
-</div>
 
 
 
@@ -771,28 +749,12 @@ body.light .hero-card{
           <a href="#contact" class="btn btn-secondary">Contact Me</a>
         </div>
 
-        <div class="search-wrap">
-          <input id="searchInput" class="search-box" type="text" placeholder="Search projects or posts..." oninput="filterContent()" />
-        </div>
-      </div>
 
       <div class="hero-aside">
         <div class="stat-card fade-in">
           <div class="stat-title">Current Focus</div>
-          <div class="stat-value">Python + Web</div>
-          <p class="muted">Building stronger projects with clean design and better structure.</p>
-        </div>
-
-        <div class="stat-card fade-in">
-          <div class="stat-title">Website Status</div>
-          <div class="stat-value">Growing Fast</div>
-          <p class="muted">A fresh blog with room for tutorials, projects, and future login features.</p>
-        </div>
-
-        <div class="stat-card fade-in">
-          <div class="stat-title">Latest Goal</div>
-          <div class="stat-value">Firebase Ready</div>
-          <p class="muted">Upgrade the login circle from local storage to real authentication later.</p>
+          <div class="stat-value">Building Useful Software</div>
+          <p class="muted">Turning ideas into practical desktop and web applications.</p>
         </div>
       </div>
     </div>
@@ -803,24 +765,15 @@ body.light .hero-card{
       <div class="section-head">
         <div>
           <h2 class="section-title">About Me</h2>
-          <p class="section-subtitle">
-            I am a passionate Python developer learning GUI development, automation, and software creation.
-          </p>
         </div>
       </div>
 
       <div class="about-grid">
         <div class="note">
           <p>
-            Welcome to Mudshark Software Industry! My name is Alex Alay. This blog documents my coding journey,
-            showcases my projects, and helps me grow while learning development step by step.
-          </p>
-        </div>
-
-        <div class="note">
-          <p>
-            I am focusing on clean design, practical projects, and simple tools that make learning easier.
-            In the future, this site can grow into a real portfolio and blog platform.
+            I'm Alex, a self-taught developer from Tanzania focused on building practical
+            software and web projects. I enjoy turning ideas into real world applications
+            while improving my skills.
           </p>
         </div>
       </div>
@@ -828,225 +781,93 @@ body.light .hero-card{
   </section>
 
   <section id="skills" class="section">
-  <div class="container panel fade-in">
+    <div class="container panel fade-in">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Languages</h2>
+          <p class="section-subtitle">Core Languages I use to build software and web projects  .</p>
+        </div>
+      </div>
 
-    <div class="section-head">
-      <div>
-        <h2 class="section-title">Skills & Technologies</h2>
-        <p class="section-subtitle">
-          Technologies, tools, and development areas I use to build software and web projects.
-        </p>
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">HTML</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">CSS</span>
       </div>
     </div>
-
-    <div class="grid projects">
-
-      <div class="card">
-        <h3>Languages</h3>
-        <p>Core technologies I use for building applications and websites.</p>
-
-        <div class="card-meta">
-          <span class="tag">Python</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Development</h3>
-        <p>Areas where I focus on building practical and useful projects.</p>
-
-        <div class="card-meta">
-          <span class="tag">Desktop Applications</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Web Development</span>
-          <span class="tag">Problem Solving</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Tools & Learning</h3>
-        <p>Tools I use regularly and technologies I am currently exploring.</p>
-
-        <div class="card-meta">
-          <span class="tag">Git</span>
-          <span class="tag">GitHub</span>
-          <span class="tag">VS Code</span>
-          <span class="tag">Firebase</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-  </section><section id="skills" class="section">
-  <div class="container panel fade-in">
-
-    <div class="section-head">
-      <div>
-        <h2 class="section-title">Skills & Technologies</h2>
-        <p class="section-subtitle">
-          Technologies, tools, and development areas I use to build software and web projects.
-        </p>
-      </div>
-    </div>
-
-    <div class="grid projects">
-
-      <div class="card">
-        <h3>Languages</h3>
-        <p>Core technologies I use for building applications and websites.</p>
-
-        <div class="card-meta">
-          <span class="tag">Python</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Development</h3>
-        <p>Areas where I focus on building practical and useful projects.</p>
-
-        <div class="card-meta">
-          <span class="tag">Desktop Applications</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Web Development</span>
-          <span class="tag">Problem Solving</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Tools & Learning</h3>
-        <p>Tools I use regularly and technologies I am currently exploring.</p>
-
-        <div class="card-meta">
-          <span class="tag">Git</span>
-          <span class="tag">GitHub</span>
-          <span class="tag">VS Code</span>
-          <span class="tag">Firebase</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-          </section>
+  </section>
 
   <section id="projects" class="section">
     <div class="container panel fade-in">
       <div class="section-head">
         <div>
           <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle">A few things I have built or am building.</p>
+          <p class="section-subtitle">A few things I have built</p>
         </div>
       </div>
 
       <div class="grid projects" id="projectsGrid">
-        <div class="card searchable">
-          <h3>GUI Calculator</h3>
-          <p>A calculator built using Python Tkinter with a clean desktop interface.</p>
-          <div class="card-meta">
-            <span class="tag">Python</span>
-            <span class="tag">Tkinter</span>
+        <a href="https://github.com/Alex-InCode/awesome-tanzania">
+          <div class="card searchable">
+            <h3>Awesome Tanzania</h3>
+            <p>
+              A curated collection of resources, communities, projects and 
+              opportunities that help people discorver and connect with other
+              growing tech system 
+            </p>
+            <div class="card-meta">
+              <span class="tag">View</span>
+            </div>
           </div>
-        </div>
+        </a>
 
-        <div class="card searchable">
-          <h3>Student File Manager</h3>
-          <p>Desktop application for organizing student files and documents neatly.</p>
-          <div class="card-meta">
-            <span class="tag">Desktop App</span>
-            <span class="tag">Productivity</span>
-          </div>
-        </div>
 
-        <div class="card searchable">
-          <h3>Automation Tools</h3>
-          <p>Python scripts that automate repetitive tasks and save time.</p>
-          <div class="card-meta">
-            <span class="tag">Automation</span>
-            <span class="tag">Scripting</span>
+        <a href="https://github.com/Alex-InCode/file-organizer" target="_blank">
+          <div class="card searchable">
+            <h3>File Organizer</h3>          
+            <p>
+              A python Desktop application that automatically oraganizes messy files and removes duplicates
+              making digital workspaces and easier to maintain
+            </p>
+            <div class="card-meta">
+              <span class="tag">View</span>
+            </div>
           </div>
-        </div>
+        </a>
+
+        <a href="https://github.com/Alex-InCode/Focus_Control">
+          <div class="card searchable">
+            <h3>Focus Control</h3>
+            <p>
+              A productivity tool designed to help users stay focused through structured
+              work session
+            </p>
+            <div class="card-meta">
+              <span class="tag">View</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="blog" class="section">
-    <div class="container panel fade-in">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Latest Blog Posts</h2>
-          <p class="section-subtitle">Short updates and lessons from my learning journey.</p>
-        </div>
-      </div>
- 
 <h2>Comments</h2>
 
 <script src="https://giscus.app/client.js"
-        data-repo="Alex-InCode/alex-incode.github.io"
+        data-repo="a61162784-commits/a61162784-commits.github.io"
         data-repo-id="R_kgDOSzqnIw"
-        data-category="General"
         data-category-id="DIC_kwDOSzqnI84C-93F"
-        data-mapping="title"
+        data-mapping="pathname"
         data-strict="0"
         data-reactions-enabled="1"
         data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="catppuccin_latte"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
         data-lang="en"
         crossorigin="anonymous"
         async>
-  </script>
-      <div class="grid posts" id="postsGrid">
-        <div class="card searchable">
-          <h3>My First Python Program</h3>
-          <p>How I started learning Python and writing my first simple programs.</p>
-          <div class="card-meta">
-            <span class="tag">Beginner</span>
-            <span class="tag">Python</span>
-          </div>
-        </div>
-
-        <div class="card searchable">
-          <h3>Learning Tkinter</h3>
-          <p>Creating desktop applications with Python and building simple windows.</p>
-          <div class="card-meta">
-            <span class="tag">GUI</span>
-            <span class="tag">Tkinter</span>
-          </div>
-        </div>
-
-        <div class="card searchable">
-          <h3>My Coding Journey</h3>
-          <p>Progress updates, lessons learned, and the next steps in my development path.</p>
-          <div class="card-meta">
-            <span class="tag">Journey</span>
-            <span class="tag">Growth</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container panel fade-in newsletter">
-      <div class="section-head" style="margin-bottom:0;">
-        <div>
-          <h2 class="section-title">Newsletter</h2>
-          <p class="section-subtitle">Subscribe for updates when new posts and projects are added.</p>
-        </div>
-      </div>
-
-      <div class="inline-form">
-        <input class="input" type="email" placeholder="Enter your email" />
-        <button class="btn btn-primary" type="button">Subscribe</button>
-      </div>
-    </div>
-  </section>
+</script>
 
   <section id="contact" class="section">
     <div class="container panel fade-in">
@@ -1060,11 +881,19 @@ body.light .hero-card{
       <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
         <div class="card">
           <h3>Email</h3>
-          <p>a61162784@gmail.com</p>
+          <p>
+            <a href="mailto:a61162784@gmail.com">
+              a61162784@gmail.com
+            </a>
+          </p>
         </div>
         <div class="card">
           <h3>GitHub</h3>
-          <p>github.com/Alex-InCode</p>
+          <p>
+            <a href="https://github.com/Alex-InCode" target="_blank">
+              Visit GitHub
+            </a>
+          </p>
         </div>
         <div class="card">
           <h3>Location</h3>
@@ -1091,118 +920,6 @@ body.light .hero-card{
 </footer>
 
 <script>
-
-function getStoredUser(){
-  return localStorage.getItem("username") || "";
-}
-
-function getStoredEmail(){
-  return localStorage.getItem("email") || "";
-}
-
-function getInitial(name){
-  const safe = (name || "").trim();
-  return safe ? safe.charAt(0).toUpperCase() : "👤";
-}
-
-function updateProfileUI(){
-  const savedUser = getStoredUser();
-  const savedEmail = getStoredEmail();
-  const profileText = document.getElementById("profileText");
-  const profileBtn = document.getElementById("profileBtn");
-  const menuName = document.getElementById("menuName");
-  const menuEmail = document.getElementById("menuEmail");
-
-  if(savedUser){
-    profileText.textContent = getInitial(savedUser);
-    profileBtn.title = "Profile menu";
-    profileBtn.setAttribute("aria-label", "Open profile menu");
-    menuName.textContent = savedUser;
-    menuEmail.textContent = savedEmail || "Signed in";
-  } else {
-    profileText.textContent = "Login";
-    profileBtn.title = "Login";
-    profileBtn.setAttribute("aria-label", "Login");
-    menuName.textContent = "Guest";
-    menuEmail.textContent = "Not signed in";
-  }
-}
-
-function openLogin(){
-  closeProfileMenu();
-  document.getElementById("loginPopup").style.display = "flex";
-}
-
-function closeLogin(){
-  document.getElementById("loginPopup").style.display = "none";
-}
-
-function backdropClose(event){
-  if(event.target === document.getElementById("loginPopup")){
-    closeLogin();
-  }
-}
-
-function openProfileMenu(){
-  const savedUser = getStoredUser();
-  if(!savedUser){
-    openLogin();
-    return;
-  }
-  const menu = document.getElementById("profileMenu");
-  const expanded = menu.classList.toggle("show");
-  document.getElementById("profileBtn").setAttribute("aria-expanded", expanded ? "true" : "false");
-}
-
-function closeProfileMenu(){
-  const menu = document.getElementById("profileMenu");
-  menu.classList.remove("show");
-  document.getElementById("profileBtn").setAttribute("aria-expanded", "false");
-}
-
-function profileAction(event){
-  event.stopPropagation();
-  openProfileMenu();
-}
-
-function login(){
-  const username = document.getElementById("username").value.trim();
-  const email = document.getElementById("email").value.trim();
-
-  if(username === "" || email === ""){
-    alert("Please fill all fields");
-    return;
-  }
-
-  localStorage.setItem("username", username);
-  localStorage.setItem("email", email);
-
-  updateProfileUI();
-  closeLogin();
-  document.getElementById("profileMenu").classList.add("show");
-  document.getElementById("profileBtn").setAttribute("aria-expanded", "true");
-}
-
-function logout(){
-  localStorage.removeItem("username");
-  localStorage.removeItem("email");
-  closeProfileMenu();
-  updateProfileUI();
-  openLogin();
-}
-
-function goProfile(){
-  closeProfileMenu();
-  const target = document.getElementById("about");
-  if(target){
-    target.scrollIntoView({behavior:"smooth", block:"start"});
-  }
-}
-
-function openSettings(){
-  closeProfileMenu();
-  alert("Settings can be added here next. For now, use the theme button at the top.");
-}
 
 function toggleTheme(){
   document.body.classList.toggle("light");
